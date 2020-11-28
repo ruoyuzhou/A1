@@ -1,0 +1,43 @@
+<h1>Edit</h1>
+
+<h4>Community</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form action="/Communities/Edit/O1" method="post">
+            <div class="text-danger validation-summary-valid" data-valmsg-summary="true">
+                <ul>
+                    <li style="display:none"></li>
+                </ul>
+            </div>
+            <input type="hidden" data-val="true" data-val-required="The Registration Number field is required." id="ID"
+                name="ID" value="O1" />
+            <div class="form-group">
+                <label class="control-label" for="Title">Title</label>
+                <input class="form-control" type="text" data-val="true"
+                    data-val-length="The field Title must be a string with a minimum length of 3 and a maximum length of 50."
+                    data-val-length-max="50" data-val-length-min="3" data-val-required="The Title field is required."
+                    id="Title" maxlength="50" name="Title" value="Omega" />
+                <span class="text-danger field-validation-valid" data-valmsg-for="Title"
+                    data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Budget">Budget</label>
+                <input class="form-control" type="text" data-val="true"
+                    data-val-number="The field Budget must be a number."
+                    data-val-required="The Budget field is required." id="Budget" name="Budget" value="390.00" />
+                <span class="text-danger field-validation-valid" data-valmsg-for="Budget"
+                    data-valmsg-replace="true"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <input name="__RequestVerificationToken" type="hidden"
+                value="CfDJ8JilVvYUKFhGoXJ1bIILjj0DR0a41wjX56hwNLW8cCgl9lYBg4Msak3tvOhBDcXaHHHtAIJ57NU6zrAOGLskZCIlm_o5G5Tw594FLCWJZWOp_LqV7Du1KkUcrs3x_8uBxPba8PLfeDpnwIPOjEHbUr8" />
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/Communities">Back to List</a>
+</div>
