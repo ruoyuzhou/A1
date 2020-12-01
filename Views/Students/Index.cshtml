@@ -1,7 +1,13 @@
+@model StudentsViewModel
+
+@{
+    ViewBag.Title = "Students";
+}
+
 <h1>Index</h1>
 
 <p>
-    <a href="/Students/Create">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -19,102 +25,39 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>
-                Alexander
-            </td>
-            <td>
-                Carson
-            </td>
-            <td>
-                2005-09-01
-            </td>
-            <td>
-                <a href="/Students/Index/1">Select</a> |
-                <a href="/Students/Edit/1">Edit</a> |
-                <a href="/Students/EditMemberships/1">Edit Memberships</a> |
-                <a href="/Students/Details/1">Details</a> |
-                <a href="/Students/Delete/1">Delete</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Alonso
-            </td>
-            <td>
-                Meredith
-            </td>
-            <td>
-                2002-09-01
-            </td>
-            <td>
-                <a href="/Students/Index/2">Select</a> |
-                <a href="/Students/Edit/2">Edit</a> |
-                <a href="/Students/EditMemberships/2">Edit Memberships</a> |
-                <a href="/Students/Details/2">Details</a> |
-                <a href="/Students/Delete/2">Delete</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Anand
-            </td>
-            <td>
-                Arturo
-            </td>
-            <td>
-                2003-09-01
-            </td>
-            <td>
-                <a href="/Students/Index/3">Select</a> |
-                <a href="/Students/Edit/3">Edit</a> |
-                <a href="/Students/EditMemberships/3">Edit Memberships</a> |
-                <a href="/Students/Details/3">Details</a> |
-                <a href="/Students/Delete/3">Delete</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Barzdukas
-            </td>
-            <td>
-                Gytis
-            </td>
-            <td>
-                2002-09-01
-            </td>
-            <td>
-                <a href="/Students/Index/4">Select</a> |
-                <a href="/Students/Edit/4">Edit</a> |
-                <a href="/Students/EditMemberships/4">Edit Memberships</a> |
-                <a href="/Students/Details/4">Details</a> |
-                <a href="/Students/Delete/4">Delete</a>
-            </td>
-        </tr>
+        @{ foreach (var student in Model.Students)
+            {
+                <tr>
+                    <td>@student.FirstName</td>
+                    <td>@student.LastName</td>
+                    <td>@string.Format("{0:yyyy-MM-dd}", student.EnrollmentDate)</td>
+                    <td>
+                        <a asp-controller="Students" asp-action="Index" asp-route-id="@student.ID">Select</a> |
+                        <a asp-controller="Students" asp-action="Edit" asp-route-id="@student.ID">Edit</a> |
+                        <a asp-controller="Students" asp-action="EditMemberships" asp-route-id="@student.ID">Edit Memberships</a> |
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@student.ID">Details</a> |
+                        <a asp-controller="Students" asp-action="Delete" asp-route-id="@student.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
 
-
-<h3>
-    Member of the following communities
-</h3>
-<table class="table">
-    <tr>
-        <th> Name </th>
-    </tr>
-    <tr>
-        <td>
-            Alpha
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Beta
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Omega
-        </td>
-    </tr>
-</table>
+@{ if (Model.Selected != null)
+    {
+        <h3>
+            Member of the following communities
+        </h3>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+            </tr>
+            @{ foreach (var membership in Model.Selected.Membership)
+                {
+                    <tr><td>@membership.Community.Title </td></tr>
+                }
+            }
+        </table>
+    }
+}

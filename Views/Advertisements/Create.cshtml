@@ -1,25 +1,31 @@
+@model Community
+@{
+    ViewBag.Title = "Create";
+}
 <h1>Upload</h1>
 
-<h4>Upload an add for community Beta</h4>
+<h4>Upload an add for community @Model.Title</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form enctype="multipart/form-data" action="/Advertisements/Create/B1" method="post">
-            <input name="CommunityId" hidden value="B1" />
+        @using (Html.BeginForm(FormMethod.Post, new { @enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(m => m.ID)
+
+            @Html.ValidationSummary()
+
             <div class="form-group">
                 <div class="btn btn-sm float-left">
-                    <input name="file" type="file">
+                    <input name="file" type="file"/>
                 </div>
             </div>
-
             <div class="form-group">
-                <button name="upload" class="btn btn-primary">Upload Now</button>
+                <button type="submit" class="btn btn-primary">Upload Now</button>
             </div>
-
-        </form>
+        }
     </div>
 </div>
 
 <div>
-    <a href="/Advertisements/Index/B1">Back to List</a>
+    @Html.ActionLink("Back to List", "Index", "Advertisements", new { id = Model.ID })
 </div>

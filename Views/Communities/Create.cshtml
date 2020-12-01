@@ -1,21 +1,18 @@
-@model Student
-
+@model Community
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create Community";
 }
-<h1>Edit</h1>
+<h1>Create</h1>
 
-<h4>Student</h4>
+<h4>Community</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-
         @using (Html.BeginForm(FormMethod.Post))
         {
-            @Html.HiddenFor(m => m.ID)
-            @Html.EditorFor(m => m.LastName)
-            @Html.EditorFor(m => m.FirstName)
-            @Html.EditorFor(m => m.EnrollmentDate)
+            @Html.EditorFor(m => m.ID)
+            @Html.EditorFor(m => m.Title)
+            @Html.EditorFor(m => m.Budget)
 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Save</button>

@@ -1,37 +1,44 @@
-<h1>Show ads for community Beta</h1>
+@model Community
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Show ads for community @Model.Title</h1>
 
 <p>
-    <a href="/Advertisements/Create/B1">Upload New</a>
+    @Html.ActionLink("Upload New", "Create", "Advertisements", new { id = Model.ID })
 </p>
 
 <div>
-    <a href="/Communities">Back to List</a>
+    @Html.ActionLink("Back to List", "Index", "Communities")
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                File Name
-            </th>
-            <th>
-                Image
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                blazor-webassembly.png
-            </td>
-            <td>
-                <img src="https://afrasialab5.blob.core.windows.net/smilies/blazor-webassembly.png"
-                    style="max-width: 400px;" />
-            </td>
-            <td>
-                <a href="/Advertisements/Delete/3">Delete</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+@if (Model.Advertisements.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    File Name
+                </th>
+                <th>
+                    Image
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var adv in Model.Advertisements)
+            {
+                <tr>
+                    <td>@adv.FileName</td>
+                    <td><img src="@adv.Url" style="max-width:400px" /></td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Advertisements", new { id = adv.ID })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There are no filesto display.</p>
+}
