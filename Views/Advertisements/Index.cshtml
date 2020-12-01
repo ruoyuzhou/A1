@@ -31,7 +31,7 @@
             {
                 <tr>
                     <td>@adv.FileName</td>
-                    <td><img src="@adv.Url" style="max-width:400px" /></td>
+                    <td><img src="@adv.Url" style="max-width:400px;max-height:400px" /></td>
                     <td>@Html.ActionLink("Delete", "Delete", "Advertisements", new { id = adv.ID })</td>
                 </tr>
             }
@@ -40,5 +40,5 @@
 }
 else
 {
-    <p>There are no filesto display.</p>
+    <p>There are no files to display.</p>
 }
